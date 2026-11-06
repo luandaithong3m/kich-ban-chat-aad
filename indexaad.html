@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kịch bản chat – Chăm sóc xe 3M | Đại Thống</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f1ed; --card:#fff; --ink:#18181b; --muted:#6b6b72; --line:#e7e3dc;
+  --accent:#d0102e; --accent2:#ff5a3c; --accent-soft:#fff0ef; --accent-ink:#a30c25;
+  --ok:#17935a; --blue:#2f6fed; --r:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Be Vietnam Pro",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{background:radial-gradient(1200px 300px at 85% -40%,rgba(255,90,60,.55),transparent 60%),linear-gradient(120deg,#17171c 0%,#2a1218 55%,#7a0d1f 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px);pointer-events:none}
+.hero-in{max-width:1300px;margin:0 auto;padding:22px 24px 18px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:800;font-size:18px;box-shadow:0 6px 20px rgba(208,16,46,.45)}
+.brand h1{margin:0;font-size:22px;letter-spacing:-.015em}
+.brand p{margin:1px 0 0;font-size:13.5px;opacity:.75}
+.settings{display:flex;flex-wrap:wrap;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:8px;border-radius:14px;backdrop-filter:blur(6px)}
+.settings label{display:flex;flex-direction:column;font-size:11px;opacity:.85;font-weight:500;padding-left:2px}
+.settings input{border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.25);color:#fff;border-radius:9px;padding:6px 10px;width:150px;margin-top:3px}
+.settings input::placeholder{color:rgba(255,255,255,.45)}
+.settings input:focus{outline:none;border-color:var(--accent2)}
+.modes{max-width:1300px;margin:0 auto;padding:0 24px;display:flex;gap:6px;position:relative;z-index:1}
+.mode{border:none;background:transparent;color:rgba(255,255,255,.7);padding:10px 16px 12px;border-radius:12px 12px 0 0;font-weight:600;font-size:14px;display:flex;gap:8px;align-items:center}
+.mode:hover{color:#fff}
+.mode.on{background:var(--bg);color:var(--ink)}
+.mode .n{background:rgba(255,255,255,.18);border-radius:999px;font-size:11px;padding:1px 7px}
+.mode.on .n{background:var(--accent);color:#fff}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1300px;margin:0 auto;padding:18px 24px 36px;display:grid;grid-template-columns:350px 1fr;gap:20px}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;padding:14px}.hero-in{padding:16px 14px}.modes{padding:0 10px}.mode{padding:9px 10px 11px;font-size:12.5px;white-space:nowrap}.mode .n{display:none}}
+aside{display:flex;flex-direction:column;gap:12px}
+.search{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;width:100%}
+.search:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:500}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 10px 10px;text-align:left;display:flex;flex-direction:column;gap:6px;transition:transform .15s,box-shadow .15s,border-color .15s;overflow:hidden}
+.pcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.pcard.on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.pcard .art{height:74px;border-radius:10px;display:grid;place-items:center;position:relative}
+.pcard .art svg{height:64px}
+.pcard .tag{position:absolute;top:6px;left:6px;font-size:10.5px;font-weight:700;background:rgba(255,255,255,.85);padding:1px 7px;border-radius:999px}
+.pcard .nm{font-weight:600;font-size:13px;line-height:1.3;min-height:34px}
+.pcard .pr{font-weight:800;color:var(--accent);font-size:14px}
+.sec{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;margin:8px 2px 0}
+.combo{background:linear-gradient(135deg,#fff,#fff6f3);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:left;display:flex;gap:10px;align-items:center;width:100%;transition:transform .15s}
+.combo:hover{transform:translateY(-2px)}
+.combo.on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.combo .ic{display:flex}
+.combo .ic span{width:26px;height:26px;border-radius:8px;border:2px solid #fff;margin-left:-8px;display:grid;place-items:center}
+.combo .ic span:first-child{margin-left:0}
+.combo .ic svg{height:20px}
+.combo b{font-size:14px;display:block}
+.combo small{color:var(--muted);font-size:12px}
+.combo .tot{margin-left:auto;font-weight:800;color:var(--accent);white-space:nowrap}
+.sitg{display:flex;flex-direction:column;gap:6px}
+.sit{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-align:left;width:100%;transition:transform .15s}
+.sit:hover{transform:translateX(3px)}
+.sit.on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.sit .em{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px;flex:none}
+.sit b{font-size:14px;font-weight:600;display:block;line-height:1.25}
+.sit small{color:var(--muted);font-size:12px}
+
+/* ---------- main ---------- */
+main{background:var(--card);border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden;min-height:680px}
+.phead{padding:18px 20px 16px;border-bottom:1px solid var(--line);display:flex;gap:16px;align-items:flex-start}
+.phead .big{flex:none;width:86px;height:96px;border-radius:14px;display:grid;place-items:center}
+.phead .big svg{height:82px}
+.phead .tx{flex:1;min-width:0}
+.phead h2{margin:0;font-size:19px;line-height:1.3;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:13.5px;margin-top:3px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pill{background:#f2efea;border-radius:999px;padding:1px 9px;font-size:12px;font-weight:500;color:var(--ink)}
+.price{background:var(--accent);color:#fff;border-radius:999px;padding:1px 10px;font-weight:700;font-size:13px}
+.tabs{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#fff;border-radius:10px;padding:5px 12px;font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center}
+.tab.on.t-uses{background:#eaf7ef;border-color:#bfe6cf;color:#136c43}
+.tab.on.t-steps{background:#eaf1ff;border-color:#c7d8fb;color:#1d4fb8}
+.tab.on.t-notes{background:#fff5e5;border-color:#f6d9a6;color:#93560a}
+.info{margin-top:10px;border-radius:12px;padding:12px 14px 12px 16px;font-size:14px;position:relative;border-left:4px solid}
+.info.t-uses{background:#f4fbf7;border-color:#2bb673}
+.info.t-steps{background:#f4f7ff;border-color:var(--blue)}
+.info.t-notes{background:#fffaf1;border-color:#f0a020}
+.info ul,.info ol{margin:0;padding-left:20px;padding-right:70px}
+.info li{margin:3px 0}
+.info .cp{position:absolute;top:10px;right:10px}
+.ctx{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin-top:8px;flex-wrap:wrap}
+.ctx select{border:1px solid var(--line);border-radius:9px;padding:5px 8px;background:#fff;font-size:13px;max-width:100%}
+
+.thread{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;max-height:62vh;min-height:300px;
+  background:#f7f5f1 radial-gradient(circle at 1px 1px,#e8e3da 1px,transparent 0) 0 0/18px 18px}
+.msg{display:flex;gap:8px;max-width:86%;animation:pop .28s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.msg.kh{align-self:flex-start}
+.msg.me{align-self:flex-end;flex-direction:row-reverse}
+.av{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;margin-top:18px}
+.kh .av{background:#8e8e96}
+.me .av{background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.col{display:flex;flex-direction:column;gap:4px;min-width:0}
+.me .col{align-items:flex-end}
+.who{font-size:11.5px;color:var(--muted);font-weight:500;display:flex;gap:6px;align-items:center}
+.lbl{background:var(--ink);color:#fff;border-radius:999px;padding:0 8px;font-size:10.5px;font-weight:700;letter-spacing:.02em}
+.bub{padding:10px 14px;border-radius:18px;white-space:pre-wrap;word-wrap:break-word;box-shadow:0 1px 1px rgba(0,0,0,.04)}
+.kh .bub{background:#fff;border-top-left-radius:6px}
+.kh .bub.sys{background:transparent;box-shadow:none;border:1px dashed #cfc9bf;color:var(--muted);font-style:italic;font-size:13.5px}
+.me .bub{background:linear-gradient(135deg,#ff3b4f,#d0102e);color:#fff;border-top-right-radius:6px;outline:none}
+.me .bub:focus{box-shadow:0 0 0 3px rgba(208,16,46,.25)}
+.row{display:flex;gap:8px;align-items:center}
+.hint{font-size:11.5px;color:var(--muted)}
+.cp{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:700;display:inline-flex;gap:5px;align-items:center;transition:.15s}
+.cp:hover{border-color:var(--accent);color:var(--accent)}
+.cp.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.typing{align-self:flex-end;display:flex;gap:4px;padding:12px 14px;background:#fff;border-radius:18px;margin-right:40px}
+.typing i{width:7px;height:7px;border-radius:50%;background:#c4bfb6;animation:b 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.ph{background:#ffe27a;color:#18181b;border-radius:4px;padding:0 3px}
+
+.quick{padding:12px 20px 4px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--line);background:#fff}
+.q{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:500;transition:.15s}
+.q:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.q.hot{background:var(--accent-soft);border-color:#f5c3c8;color:var(--accent-ink)}
+form{display:flex;gap:8px;padding:10px 20px 16px;background:#fff}
+form input{flex:1;border:1px solid var(--line);border-radius:999px;padding:11px 16px;background:#faf9f7}
+form input:focus{outline:2px solid var(--accent-soft);border-color:var(--accent);background:#fff}
+form button{border:none;background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;border-radius:999px;padding:0 20px;font-weight:700}
+.clear{background:none;border:none;color:var(--muted);font-size:12.5px;text-decoration:underline;padding:0 4px;margin-left:auto}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:13.5px;opacity:0;transition:.2s;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-in">
+    <div class="brand">
+      <div class="logo">3M</div>
+      <div><h1>Kịch bản chat chăm sóc xe 3M</h1><p>Chọn sản phẩm hoặc tình huống → bấm câu khách hỏi → sửa nếu cần → Copy gửi khách</p></div>
+    </div>
+    <div class="settings">
+      <label>Tên shop<input id="sShop" placeholder="Đại Thống"></label>
+      <label>Người tư vấn<input id="sTen" placeholder="VD: Linh"></label>
+      <label>SĐT / Zalo<input id="sSdt" placeholder="VD: 09xx xxx xxx"></label>
+    </div>
+  </div>
+  <div class="modes" id="modes"></div>
+</div>
+
+<div class="wrap">
+  <aside id="side"></aside>
+  <main>
+    <div class="phead" id="phead"></div>
+    <div class="thread" id="thread"></div>
+    <div class="quick" id="quick"></div>
+    <form id="ask">
+      <input id="askIn" placeholder="Dán câu khách hỏi: “xài sao shop?”, “mắc vậy”, “để mình suy nghĩ”…" autocomplete="off">
+      <button type="submit">Trả lời ➤</button>
+    </form>
+  </main>
+</div>
+<div class="toast" id="toast">✓ Đã copy, dán vào khung chat với khách</div>
+
+<script>
+/* ================= DATA ================= */
+const P = [
+ {id:1, name:"Dung dịch tẩy keo và nhựa đường 3M", short:"Tẩy keo & nhựa đường", code:"08987", vol:"chai xịt 425g", price:145000, cat:"Ngoại thất", color:"#4b5563", tint:"#eef0f3", shape:"can",
+  keys:["keo","nhua duong","decal","bang keo","nhua cay","tay keo"],
+  pitch:"Dạ đây là dung dịch tẩy keo và nhựa đường 3M ạ. Xịt lên là làm mềm và tẩy sạch nhựa đường bắn lên thân xe, keo decal, băng keo còn sót, nhựa cây, vết dầu mỡ. Chỉ cần lau nhẹ là sạch, không phải cạy hay chà mạnh làm xước sơn ạ.",
+  uses:["Tẩy nhựa đường, vết bẩn bám cứng ở hông xe, vè bánh","Tẩy keo còn sót khi bóc decal, tem, băng keo, logo","Tẩy nhựa cây, xác côn trùng, vết dầu mỡ","Dùng được trên sơn xe đã khô hoàn toàn, kính, kim loại"],
+  steps:["Lắc đều chai","Xịt trực tiếp lên vết bẩn, chờ khoảng 30–60 giây cho vết bẩn mềm ra","Lau bằng khăn mềm sạch; vết cứng đầu thì xịt thêm lần nữa","Rửa lại vùng vừa xử lý bằng nước hoặc dung dịch rửa xe"],
+  notes:["Không dùng trên sơn mới sơn chưa khô hẳn","Với nhựa nhám, cao su, bề mặt nhạy cảm: thử trước ở chỗ khuất","Dễ cháy: tránh xa lửa, dùng nơi thoáng khí"],
+  tip:"nhựa đường, keo bám càng lâu càng cứng, xử lý sớm sẽ nhanh và đỡ tốn công hơn", pair:[6]},
+ {id:2, name:"Xịt khử mùi làm mát không khí 3M", short:"Khử mùi, làm mát", code:"38660", vol:"chai xịt 190ml", price:190000, cat:"Nội thất", color:"#0e9aa7", tint:"#e6f6f7", shape:"can",
+  keys:["khu mui","mui","thom","lam mat","hoi","am moc","thuoc la"],
+  pitch:"Dạ đây là chai xịt khử mùi, làm mát không khí 3M ạ. Xịt vào khoang xe giúp khử mùi ẩm mốc, mùi thuốc lá, mùi thức ăn, xe đóng kín lâu ngày, đồng thời tạo cảm giác mát và thơm dễ chịu khi lên xe ạ.",
+  uses:["Khử mùi trong khoang xe: ẩm mốc, thuốc lá, thức ăn, xe đóng kín lâu","Tạo cảm giác mát, thơm dễ chịu khi lên xe","Xịt được cho thảm, ghế, khu vực cửa gió điều hoà"],
+  steps:["Lắc đều chai","Xịt vào khoang xe, thảm, ghế, khu vực cửa gió điều hoà","Đóng cửa xe vài phút để dung dịch phát huy tác dụng","Mở cửa cho thoáng rồi sử dụng xe bình thường"],
+  notes:["Không xịt trực tiếp vào mặt, mắt","Không xịt lên màn hình, đồng hồ, nút bấm điện tử","Để xa tầm tay trẻ em, tránh nguồn nhiệt"],
+  tip:"khử mùi ngay sau khi vệ sinh nội thất thì xe sẽ thơm sạch trọn vẹn hơn", pair:[3,8]},
+ {id:3, name:"Chai xịt vệ sinh nội thất nỉ ô tô 3M", short:"Vệ sinh nội thất nỉ", code:"", vol:"chai xịt", price:92000, cat:"Nội thất", color:"#a16207", tint:"#fbf3e4", shape:"trigger",
+  keys:["ni","vai","ghe ni","tran","tham","ve sinh ni"],
+  pitch:"Dạ đây là chai xịt vệ sinh nội thất nỉ 3M ạ. Chuyên làm sạch các bề mặt nỉ, vải trong xe như ghế nỉ, trần xe, thảm sàn, tapi cửa. Xịt lên, chà nhẹ là sạch vết bẩn, vết ố và bớt mùi hôi bám lâu ngày ạ.",
+  uses:["Làm sạch ghế nỉ, trần nỉ, thảm sàn, tapi cửa bọc vải","Xử lý vết bẩn do nước ngọt, cà phê, bùn đất, mồ hôi","Giúp bề mặt nỉ sạch, sáng màu, bớt mùi"],
+  steps:["Hút bụi bề mặt trước","Xịt đều lên vùng cần làm sạch, chờ khoảng 1 phút","Chà nhẹ bằng bàn chải lông mềm","Lau lại bằng khăn microfiber sạch, hơi ẩm","Để khô tự nhiên, mở cửa xe cho thoáng"],
+  notes:["Không xịt quá ướt, nhất là trần nỉ","Vải màu: thử trước ở chỗ khuất","Không dùng cho da, nhựa: dùng chai bọt vệ sinh da, nhựa"],
+  tip:"hút bụi thật kỹ trước khi xịt sẽ giúp nỉ sạch nhanh hơn và không bị lem", pair:[2,4]},
+ {id:4, name:"Chai xịt vệ sinh nội thất da, nhựa ô tô dạng bọt 3M", short:"Bọt vệ sinh da, nhựa", code:"", vol:"chai xịt dạng bọt", price:82000, cat:"Nội thất", color:"#b45309", tint:"#fdf0e6", shape:"can",
+  keys:["da","nhua","bot","ghe da","vo lang","tap lo","taplo"],
+  pitch:"Dạ đây là chai vệ sinh nội thất da, nhựa dạng bọt 3M ạ. Dùng cho ghế da, táp lô, ốp cửa, vô lăng, bảng điều khiển bằng nhựa. Bọt bám trên bề mặt, không chảy, kéo vết bẩn và dầu tay lên, lau một lượt là sạch ạ.",
+  uses:["Làm sạch ghế da, ốp da","Làm sạch táp lô, tapi cửa, bảng điều khiển nhựa","Làm sạch vô lăng, cần số – chỗ bám mồ hôi, dầu tay","Dạng bọt không chảy, dễ dùng cả trên mặt đứng"],
+  steps:["Lắc đều chai","Xịt bọt lên bề mặt hoặc lên khăn","Chờ vài giây cho bọt ngấm; khe và đường chỉ dùng bàn chải mềm","Lau sạch bằng khăn microfiber"],
+  notes:["Màn hình, nút bấm điện tử: xịt ra khăn rồi lau, không xịt trực tiếp","Da sáng màu: thử trước ở chỗ khuất","Không dùng cho nỉ, vải: dùng chai vệ sinh nỉ","Sau khi làm sạch nên dưỡng bằng xịt bảo dưỡng nội thất"],
+  tip:"dùng bàn chải mềm cho các đường chỉ ghế da sẽ lấy được vết bẩn sâu hơn", pair:[8,3]},
+ {id:5, name:"Dung dịch vệ sinh kính 3M", short:"Vệ sinh kính", code:"38191LT", vol:"chai 400ml", price:88000, cat:"Kính", color:"#2563eb", tint:"#e9f0fe", shape:"can",
+  keys:["ve sinh kinh","lau kinh","kinh","guong","mo kinh"],
+  pitch:"Dạ đây là dung dịch vệ sinh kính 3M 400ml ạ. Làm sạch kính lái, kính cửa, gương chiếu hậu: tẩy bụi, dấu tay, màng dầu, vết bám mặt trong kính, lau xong kính trong, không để lại vệt mờ ạ.",
+  uses:["Làm sạch kính lái, kính cửa, gương chiếu hậu","Tẩy bụi, dấu tay, màng dầu, vết bám mặt trong kính","Lau xong kính trong, không để lại vệt mờ"],
+  steps:["Xịt lên kính (mặt trong kính thì xịt lên khăn)","Lau bằng khăn microfiber theo một chiều","Lật mặt khăn khô lau lại lần nữa cho trong"],
+  notes:["Không lau khi kính đang nóng dưới nắng","Kính có dán phim mặt trong: xịt lên khăn rồi lau, không xịt quá ướt","Tránh để dung dịch chảy xuống táp lô"],
+  tip:"lau kính bằng khăn microfiber và lau theo một chiều sẽ không để lại vệt", pair:[9]},
+ {id:6, name:"Chai xịt tăng độ bóng sơn 3M", short:"Tăng độ bóng sơn", code:"39034LT", vol:"chai 400ml", price:126000, cat:"Ngoại thất", color:"#ca8a04", tint:"#fdf6dd", shape:"can",
+  keys:["bong son","tang bong","son","bong","wax"],
+  pitch:"Dạ đây là chai xịt tăng độ bóng sơn 3M 400ml ạ. Giúp sơn xe bóng sâu, màu sơn tươi hơn, tạo lớp bảo vệ mỏng làm bề mặt trơn, hạn chế bám bụi, bám nước. Dùng nhanh sau mỗi lần rửa xe, không cần máy ạ.",
+  uses:["Tăng độ bóng, màu sơn sâu và tươi hơn","Tạo lớp bảo vệ mỏng, bề mặt trơn mịn, ít bám bụi, bám nước","Dưỡng nhanh giữa các lần rửa xe, không cần máy đánh bóng"],
+  steps:["Rửa sạch xe, lau khô","Làm từng khu vực nhỏ: xịt lên bề mặt hoặc lên khăn","Dàn đều bằng khăn microfiber","Lật mặt khăn khô lau lại đến khi bóng"],
+  notes:["Không dùng dưới nắng gắt hoặc khi bề mặt đang nóng","Tránh xịt lên kính lái, lưỡi gạt mưa","Không xịt lên lốp, bàn đạp"],
+  tip:"nên xịt tăng bóng trong bóng râm, khi bề mặt mát lớp bóng sẽ đều hơn", pair:[7,1]},
+ {id:7, name:"Chai xịt bảo dưỡng lốp xe 3M", short:"Bảo dưỡng lốp", code:"39042LT", vol:"chai 400ml", price:139000, cat:"Ngoại thất", color:"#27272a", tint:"#ececee", shape:"can",
+  keys:["lop","vo xe","banh xe","den lop"],
+  pitch:"Dạ đây là chai xịt bảo dưỡng lốp xe 3M 400ml ạ. Xịt lên giúp lốp đen bóng như mới, đồng thời bảo vệ cao su khỏi nắng, hạn chế lốp bị bạc màu, khô cứng và nứt chân chim ạ.",
+  uses:["Làm lốp đen bóng như mới","Bảo vệ cao su khỏi tác hại của nắng","Hạn chế lốp bạc màu, khô cứng, nứt chân chim"],
+  steps:["Làm sạch lốp, để khô","Lắc đều, xịt đều quanh hông lốp","Để khô tự nhiên; muốn bóng nhẹ, tự nhiên hơn thì lau dàn đều bằng khăn"],
+  notes:["Không xịt lên mặt gai lốp, má phanh, đĩa phanh","Lau sạch phần dính lên mâm, sơn","Không dùng lên bàn đạp, tay lái (gây trơn)"],
+  tip:"xịt lốp sau khi rửa xe và để lốp khô hẳn thì độ đen bóng giữ lâu hơn", pair:[6]},
+ {id:8, name:"Chai xịt bảo dưỡng nội thất 3M", short:"Bảo dưỡng nội thất", code:"39040LT", vol:"chai 400ml", price:135000, cat:"Nội thất", color:"#7c3aed", tint:"#f1ebfd", shape:"can",
+  keys:["bao duong noi that","duong","noi that","duong da","duong nhua"],
+  pitch:"Dạ đây là chai xịt bảo dưỡng nội thất 3M 400ml ạ. Dùng để dưỡng và bảo vệ táp lô, ốp nhựa, da, cao su trong xe: bề mặt sáng đẹp, chống tác hại của nắng, hạn chế bạc màu, khô nứt và ít bám bụi hơn ạ.",
+  uses:["Dưỡng táp lô, ốp nhựa, da, cao su trong xe","Bề mặt sáng đẹp, hạn chế bạc màu, khô nứt do nắng","Giúp bề mặt ít bám bụi hơn"],
+  steps:["Lau sạch bụi bẩn trước (nên dùng bọt vệ sinh da, nhựa)","Xịt lên khăn microfiber hoặc lên bề mặt","Lau đều","Lau lại bằng khăn khô nếu muốn độ bóng nhẹ, tự nhiên"],
+  notes:["Không dùng trên vô lăng, cần số, bàn đạp – dễ gây trơn","Không xịt lên kính, màn hình","Không dùng cho nỉ, vải"],
+  tip:"xịt lên khăn rồi mới lau táp lô sẽ đều hơn và không bị bám lên kính", pair:[4,3]},
+ {id:9, name:"Dung dịch phủ nano chống trượt nước kính 3M", short:"Phủ nano chống bám nước", code:"08889LT", vol:"chai 200ml", price:138000, cat:"Kính", color:"#059669", tint:"#e5f6ef", shape:"trigger",
+  keys:["chong bam nuoc","truot nuoc","nano","mua","la sen","phu kinh","chong nuoc"],
+  pitch:"Dạ đây là dung dịch phủ nano chống bám nước kính 3M 200ml ạ. Phủ lên kính tạo hiệu ứng lá sen: nước mưa vo tròn và trôi đi nhanh, giúp tầm nhìn rõ hơn khi trời mưa, chạy đêm mưa an toàn hơn ạ.",
+  uses:["Tạo lớp phủ nano trên kính, nước mưa vo tròn, trôi nhanh","Tầm nhìn rõ hơn khi trời mưa, nhất là chạy đêm","Dùng cho kính lái, kính sườn, gương chiếu hậu"],
+  steps:["Vệ sinh sạch kính (nên dùng dung dịch vệ sinh kính 3M), lau khô","Xịt lượng vừa đủ, dàn đều bằng khăn","Chờ vài phút cho lớp phủ khô (theo hướng dẫn trên nhãn)","Lau bằng khăn microfiber khô, sạch đến khi kính trong, không vệt"],
+  notes:["Thi công khi kính khô, không nắng gắt","Hạn chế để kính dính nước ngay sau khi phủ","Kính phải thật sạch thì lớp phủ mới bám tốt"],
+  tip:"kính càng sạch thì lớp phủ chống bám nước càng bám tốt và bền lâu", pair:[5]}
+];
+const COMBOS = [
+ {name:"Combo chăm sóc nội thất", ids:[3,4,8,2], why:"làm sạch nỉ + da, nhựa → dưỡng → khử mùi, xe sạch thơm như mới"},
+ {name:"Combo ngoại thất bóng đẹp", ids:[1,6,7], why:"tẩy nhựa đường, keo → tăng bóng sơn → lốp đen bóng"},
+ {name:"Combo kính trong, đi mưa an toàn", ids:[5,9], why:"vệ sinh kính sạch rồi phủ nano chống bám nước"}
+];
+/* Tình huống: {sp} tên SP, {gia} giá, {shop}, {sdt}, {ten} người tư vấn, {meo} mẹo */
+const SIT = [
+ {group:"Xin thông tin khách", color:"#2f6fed", bg:"#eaf1ff", items:[
+  {id:"sdt", em:"📞", t:"Xin số điện thoại", d:"Khi khách đang hỏi, chưa để lại liên hệ", kh:"(Khách đang hỏi về sản phẩm)", v:[
+   ["Tư vấn kỹ hơn","Dạ để em tư vấn kỹ hơn cho đúng nhu cầu của mình, anh/chị cho em xin số điện thoại được không ạ? Em gọi nhanh 2–3 phút thôi, không làm phiền mình đâu ạ."],
+   ["Để giao hàng","Dạ anh/chị cho em xin số điện thoại để bên giao hàng liên hệ khi tới nơi nha. Em chỉ dùng số này để giao hàng và hỗ trợ đơn của mình thôi ạ."],
+   ["Hỗ trợ sau mua","Dạ anh/chị để lại giúp em số điện thoại nha. Sau khi dùng {sp}, có gì chưa rõ em hỗ trợ trực tiếp cho mình, đỡ phải nhắn qua lại ạ."]]},
+  {id:"zalo", em:"💬", t:"Xin Zalo / mời kết bạn Zalo", d:"Chuyển khách sang Zalo để chăm lâu dài", kh:"(Khách nhắn qua Facebook / web)", v:[
+   ["Gửi hình chi tiết","Dạ anh/chị cho em xin số Zalo nha, em gửi hình ảnh sản phẩm và hướng dẫn dùng {sp} chi tiết qua đó, mình xem cho tiện ạ."],
+   ["Khách tự kết bạn","Dạ anh/chị kết bạn Zalo với em qua số {sdt} giúp em nha. Em gửi báo giá đầy đủ và tư vấn cho mình nhanh hơn ạ."],
+   ["Trả lời nhanh hơn","Dạ nhắn ở đây đôi khi em trả lời hơi chậm, anh/chị cho em xin số Zalo để em hỗ trợ mình nhanh nhất nha ạ."]]},
+  {id:"diachi", em:"📦", t:"Xin thông tin giao hàng", d:"Khách đồng ý mua", kh:"Ok lấy cho mình nha.", v:[
+   ["Đầy đủ","Dạ em cảm ơn anh/chị ạ! Anh/chị gửi giúp em:\n• Họ tên người nhận:\n• Số điện thoại:\n• Địa chỉ nhận hàng (số nhà, đường, phường/xã, quận/huyện, tỉnh/thành):\n• Số lượng {sp}:\nEm lên đơn và báo phí ship cho mình ngay ạ."],
+   ["Ngắn gọn","Dạ anh/chị cho em xin tên, SĐT và địa chỉ nhận hàng nha, em lên đơn liền ạ 🙏"]]},
+  {id:"xe", em:"🚗", t:"Hỏi thông tin xe để tư vấn", d:"Hiểu nhu cầu trước khi báo giá", kh:"Shop tư vấn giúp mình với.", v:[
+   ["Hỏi nhu cầu","Dạ anh/chị đang đi dòng xe gì, nội thất da hay nỉ ạ? Mình đang muốn xử lý phần nào: nội thất, sơn, lốp hay kính ạ? Em tư vấn đúng sản phẩm, tránh để mình mua dư ạ."],
+   ["Xin hình","Dạ anh/chị chụp giúp em 1–2 tấm hình chỗ cần xử lý nha, em xem và tư vấn sản phẩm phù hợp nhất cho mình ạ."]]}
+ ]},
+ {group:"Khách lưỡng lự", color:"#d0102e", bg:"#fff0ef", items:[
+  {id:"dat", em:"💸", t:"Khách chê đắt", d:"“Sao mắc vậy shop?”", kh:"Sao mắc vậy shop?", v:[
+   ["Nói về giá trị","Dạ em hiểu ạ. {sp} giá {gia} là hàng 3M chính hãng, an toàn cho sơn và nội thất xe. Dùng hàng kém chất lượng lỡ làm bạc màu, hư bề mặt thì sửa còn tốn hơn nhiều ạ."],
+   ["Dùng được lâu","Dạ một chai {sp} dùng được nhiều lần, tính ra mỗi lần chi phí rất nhỏ mà xe luôn sạch đẹp ạ. Anh/chị dùng thử một chai là thấy khác biệt liền ạ."],
+   ["Gợi ý combo","Dạ nếu anh/chị cần chăm nhiều phần của xe, em gom combo cho mình để tiện dùng và tối ưu chi phí hơn ạ. Mình đang cần chăm nội thất hay ngoại thất để em lên combo phù hợp ạ?"]]},
+  {id:"suynghi", em:"🤔", t:"Khách “để suy nghĩ thêm”", d:"Giữ liên lạc, không ép", kh:"Để mình suy nghĩ thêm nha.", v:[
+   ["Giữ liên lạc","Dạ vâng ạ, anh/chị cứ cân nhắc thoải mái. Anh/chị cho em xin số Zalo để em gửi thêm thông tin {sp} cho mình tham khảo nha ạ?"],
+   ["Hỏi băn khoăn","Dạ anh/chị còn băn khoăn ở điểm nào ạ: giá, cách dùng hay có hợp với xe mình không? Em giải đáp ngay để mình dễ quyết định hơn ạ."]]},
+  {id:"rehon", em:"⚖️", t:"Khách so sánh chỗ khác rẻ hơn", d:"“Chỗ khác bán rẻ hơn”", kh:"Chỗ khác bán rẻ hơn mà shop.", v:[
+   ["Hàng chính hãng","Dạ trên thị trường có nhiều hàng trôi nổi giá rẻ, khó biết thật giả ạ. Bên em là hàng 3M chính hãng, nguồn gốc rõ ràng, có tư vấn cách dùng nên anh/chị yên tâm ạ."],
+   ["Hỏi lại mã hàng","Dạ anh/chị gửi em xem giúp chỗ đó bán mã nào, dung tích bao nhiêu nha. Nhiều khi khác dung tích hoặc khác dòng nên giá chênh ạ."]]},
+  {id:"imlang", em:"⏰", t:"Khách im lặng: nhắn lại", d:"Đã xem nhưng 1–2 ngày không trả lời", kh:"(Khách đã xem tin nhưng không trả lời)", v:[
+   ["Nhắc nhẹ","Dạ anh/chị ơi, hôm trước mình có hỏi về {sp}, không biết anh/chị còn quan tâm không ạ? Có gì cần tư vấn thêm thì cứ nhắn em nha."],
+   ["Tặng mẹo hay","Dạ em gửi anh/chị một mẹo nhỏ: {meo} ạ. Khi nào cần {sp}, anh/chị nhắn em lên đơn nha 😊"],
+   ["Hỏi lý do","Dạ không biết anh/chị còn điều gì băn khoăn về {sp} không ạ? Anh/chị phản hồi giúp em để em hỗ trợ tốt hơn nha."]]},
+  {id:"desau", em:"📅", t:"Khách hẹn mua sau", d:"“Khi nào cần mình nhắn”", kh:"Khi nào cần mình nhắn lại nha.", v:[
+   ["Xin liên hệ","Dạ vâng ạ. Anh/chị cho em xin số điện thoại hoặc Zalo, khi nào cần mình chỉ nhắn một tin là em lên đơn ngay, không phải tìm lại ạ."],
+   ["Để lại số shop","Dạ vâng ạ, anh/chị lưu giúp em số {sdt} (gọi/Zalo) nha. Cần {sp} hay sản phẩm chăm sóc xe 3M khác, anh/chị nhắn em là có ngay ạ."]]}
+ ]},
+ {group:"Sau bán hàng", color:"#17935a", bg:"#e9f7ef", items:[
+  {id:"xacnhan", em:"✅", t:"Xác nhận đơn", d:"Sau khi khách gửi thông tin", kh:"(Khách đã gửi tên, SĐT, địa chỉ)", v:[
+   ["Xác nhận","Dạ em xác nhận đơn của anh/chị:\n• Sản phẩm: {sp}\n• Đơn giá: {gia}/chai – Số lượng: [ ]\n• Người nhận: [tên] – [SĐT]\n• Địa chỉ: [địa chỉ]\nAnh/chị kiểm tra giúp em thông tin đã đúng chưa ạ?"]]},
+  {id:"hoitham", em:"💌", t:"Hỏi thăm sau khi dùng", d:"3–5 ngày sau khi nhận hàng", kh:"(Vài ngày sau khi khách nhận hàng)", v:[
+   ["Hỏi thăm","Dạ anh/chị ơi, em là {ten} bên {shop}. Không biết mình dùng {sp} thấy thế nào ạ? Có gì chưa rõ cách dùng em hướng dẫn thêm cho mình nha."],
+   ["Kèm mẹo","Dạ chào anh/chị, em bên {shop} ạ. Em gửi mình mẹo nhỏ khi dùng {sp}: {meo} ạ. Mình dùng có gì thắc mắc cứ nhắn em nha!"]]},
+  {id:"danhgia", em:"⭐", t:"Xin đánh giá / hình ảnh", d:"Khi khách hài lòng", kh:"Xài ok lắm shop.", v:[
+   ["Xin feedback","Dạ em cảm ơn anh/chị nhiều ạ! Nếu tiện, anh/chị gửi giúp em 1–2 tấm hình xe sau khi dùng {sp} hoặc vài dòng nhận xét nha. Phản hồi của mình giúp shop phục vụ tốt hơn ạ 🙏"]]},
+  {id:"muatiep", em:"🔁", t:"Mời mua lại / giới thiệu", d:"Chăm khách cũ", kh:"(Khách đã mua 1–2 tháng trước)", v:[
+   ["Mời mua lại","Dạ chắc chai {sp} của anh/chị cũng sắp hết rồi ạ. Anh/chị cần lấy thêm thì nhắn em, em lên đơn và giao tận nơi cho mình nha."],
+   ["Giới thiệu bạn bè","Dạ nếu bạn bè, người thân của anh/chị cũng đi xe, anh/chị giới thiệu giúp em số {sdt} nha. Em cảm ơn anh/chị rất nhiều ạ!"]]}
+ ]}
+];
+const SITS = SIT.flatMap(g=>g.items.map(i=>({...i, g})));
+
+/* ================= HELPERS ================= */
+const byId = id => P.find(p=>p.id===id);
+const vnd = n => n.toLocaleString("vi-VN")+"đ";
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d");
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sleep = ms => new Promise(r=>setTimeout(r,ms));
+
+function bottle(p, h){
+  const c=p.color;
+  if(p.shape==="trigger") return `<svg viewBox="0 0 60 90" style="height:${h}px"><path d="M22 8h16l10 6v6H34l-2 8H22z" fill="#2b2b30"/><rect x="33" y="14" width="18" height="5" rx="2" fill="#2b2b30"/><path d="M24 28h14v6c8 4 10 10 10 16v32a6 6 0 0 1-6 6H18a6 6 0 0 1-6-6V50c0-6 3-12 12-16z" fill="${c}"/><rect x="16" y="52" width="28" height="22" rx="4" fill="#fff" opacity=".92"/><text x="30" y="67" font-size="10" font-weight="800" text-anchor="middle" fill="#d0102e" font-family="Be Vietnam Pro,Arial">3M</text><path d="M18 40c2-3 5-5 8-6" stroke="#fff" stroke-width="2" opacity=".35" fill="none" stroke-linecap="round"/></svg>`;
+  return `<svg viewBox="0 0 60 90" style="height:${h}px"><rect x="23" y="4" width="14" height="8" rx="2" fill="#2b2b30"/><path d="M18 12h24l4 8H14z" fill="#d6d3cd"/><rect x="14" y="20" width="32" height="64" rx="7" fill="${c}"/><rect x="14" y="40" width="32" height="26" fill="#fff" opacity=".92"/><text x="30" y="57" font-size="11" font-weight="800" text-anchor="middle" fill="#d0102e" font-family="Be Vietnam Pro,Arial">3M</text><rect x="18" y="24" width="4" height="54" rx="2" fill="#fff" opacity=".22"/></svg>`;
+}
+
+/* ================= SETTINGS ================= */
+const S = {shop:"", ten:"", sdt:""};
+try{ Object.assign(S, JSON.parse(localStorage.getItem("kb3m")||"{}")); }catch(e){}
+[["sShop","shop"],["sTen","ten"],["sSdt","sdt"]].forEach(([el,k])=>{
+  const i=$(el); i.value=S[k]||"";
+  i.addEventListener("input",()=>{ S[k]=i.value.trim(); try{localStorage.setItem("kb3m",JSON.stringify(S))}catch(e){} });
+});
+const shop = () => S.shop || "Đại Thống";
+const sdt = () => S.sdt || "[SĐT/Zalo]";
+const fill = (t,p) => t.replace(/\{sp\}/g, p?p.name:"sản phẩm").replace(/\{gia\}/g, p?vnd(p.price):"[giá]")
+  .replace(/\{shop\}/g, shop()).replace(/\{sdt\}/g, sdt()).replace(/\{ten\}/g, S.ten||"em").replace(/\{meo\}/g, p?p.tip:"[mẹo]");
+
+/* ================= PRODUCT ANSWERS ================= */
+const A = {
+  hello: p => `Dạ ${shop()} xin chào anh/chị ạ!${S.ten?` Em là ${S.ten}, rất vui được hỗ trợ mình.`:""} Anh/chị đang quan tâm sản phẩm chăm sóc xe nào để em tư vấn kỹ hơn ạ?`,
+  uses: p => p.pitch + "\n\n" + p.uses.map(u=>"✔ "+u).join("\n"),
+  price: p => `Dạ ${p.name} (${p.vol}) bên em đang có giá ${vnd(p.price)}/chai ạ.` + (p.pair.length?`\nNếu mình dùng kèm ${p.pair.map(i=>byId(i).short.toLowerCase()).join(" hoặc ")} thì hiệu quả hơn, em báo giá luôn cho anh/chị nha.`:"") + `\nAnh/chị lấy mấy chai để em lên đơn ạ?`,
+  steps: p => `Dạ cách dùng ${p.name} rất đơn giản ạ:\n` + p.steps.map((s,i)=>`${i+1}. ${s}`).join("\n"),
+  notes: p => `Dạ khi dùng ${p.name} anh/chị lưu ý giúp em:\n` + p.notes.map(n=>"• "+n).join("\n") + `\nDùng đúng cách thì rất an toàn cho xe ạ.`,
+  genuine: p => `Dạ sản phẩm bên em là hàng 3M chính hãng, nguồn gốc rõ ràng ạ. ${shop()} chuyên phân phối sản phẩm 3M cho các garage và đại lý, anh/chị hoàn toàn yên tâm sử dụng ạ.`,
+  pair: p => `Dạ dùng ${p.name} thì anh/chị nên kết hợp thêm:\n` + p.pair.map(i=>{const q=byId(i);return `• ${q.name} – ${vnd(q.price)}`}).join("\n") + `\nKết hợp như vậy xe sẽ sạch và đẹp lâu hơn ạ. Anh/chị muốn em gom thành combo không ạ?`,
+  order: p => `Dạ để đặt hàng, anh/chị gửi giúp em:\n• Họ tên người nhận\n• Số điện thoại\n• Địa chỉ nhận hàng\n• Số lượng ${p.name}\nEm lên đơn và báo phí ship cho mình ngay ạ. Cần tư vấn thêm, anh/chị gọi hoặc Zalo em: ${sdt()}.`,
+  close: p => `Dạ em xác nhận đơn của anh/chị: ${p.name} (${p.vol}) – ${vnd(p.price)}/chai. Em sẽ đóng gói và gửi đi sớm nhất, có gì cần hỗ trợ anh/chị nhắn em hoặc gọi ${sdt()} nha. Cảm ơn anh/chị đã tin dùng sản phẩm 3M tại ${shop()} ạ!`
+};
+const QUICK = [["hello","👋 Chào khách"],["uses","✨ Công dụng?"],["price","💰 Giá bao nhiêu?"],["steps","🧴 Dùng sao?"],["notes","⚠️ Có hại xe không?"],["genuine","🛡️ Chính hãng không?"],["pair","➕ Mua kèm gì?"],["@sdt","📞 Xin SĐT"],["@zalo","💬 Xin Zalo"],["order","📦 Đặt hàng"],["close","✅ Chốt đơn"]];
+const QLABEL = {hello:"(Khách vừa nhắn tin)",uses:"Sản phẩm này dùng để làm gì vậy?",price:"Bao nhiêu 1 chai vậy shop?",steps:"Xài sao vậy shop?",notes:"Xài có hại sơn/xe không?",genuine:"Hàng chính hãng không shop?",pair:"Mua thêm gì cho đủ bộ?",order:"Đặt sao shop, có ship không?",close:"Ok lấy cho mình nha."};
+const INTENTS = [
+  ["@dat",["dat qua","dat vay","dat the","dat ghe","mac qua","mac vay","mac the","mac ghe"," mac "]],
+  ["@rehon",["re hon","cho khac","noi khac","ben kia","shop khac","giam gia"]],
+  ["@suynghi",["suy nghi","de xem","tham khao","can nhac","de minh xem"]],
+  ["@desau",["de sau","khi nao can","bua khac","hom khac","lan sau","chua can"]],
+  ["genuine",["chinh hang","hang that","hang gia","fake","nguon goc","xuat xu","hang nhai"]],
+  ["price",["gia","bao nhieu","nhieu tien"," bn ","bao tien"]],
+  ["steps",["xai sao","dung sao","dung the nao","cach dung","huong dan","su dung","xai the nao","lam sao"]],
+  ["notes",["hai","hu son","hong","an toan","luu y","tray","co sao khong","doc"]],
+  ["pair",["kem","combo","them gi","du bo","ket hop"]],
+  ["order",["dat hang","dat sao","dat mua","muon dat","len don","ship","giao","cod","dia chi","lay cho","lay 1","lay 2"]],
+  ["hello",["chao","alo","hello","hi shop","shop oi"]],
+  ["uses",["cong dung","tac dung","de lam gi","lam gi","tot khong","hieu qua","co tot"]]
+];
+const detect = text => { const t=" "+norm(text)+" "; for(const [k,ws] of INTENTS) if(ws.some(w=>t.includes(w))) return k; return "uses"; };
+function detectProduct(text){ const t=" "+norm(text)+" "; let best=null,len=0;
+  P.forEach(p=>p.keys.forEach(k=>{ if(t.includes(" "+k)&&k.length>len){best=p;len=k.length;} })); return best; }
+
+/* ================= STATE / UI ================= */
+let mode="sp", cur=P[0], combo=0, sit=SITS[0], filter="Tất cả", tab="uses", busy=Promise.resolve();
+
+function renderModes(){
+  const m=[["sp","🧴 Theo sản phẩm",P.length],["sit","📞 Xin SĐT & chăm khách",SITS.length],["combo","🎁 Combo",COMBOS.length]];
+  $("modes").innerHTML=m.map(([k,l,n])=>`<button class="mode ${k===mode?"on":""}" data-m="${k}">${l}<span class="n">${n}</span></button>`).join("");
+  $("modes").querySelectorAll(".mode").forEach(b=>b.onclick=()=>{mode=b.dataset.m; render(true);});
+}
+function renderSide(){
+  if(mode==="sp"){
+    const q=norm(($("search")||{}).value||"");
+    const items=P.filter(p=>(filter==="Tất cả"||p.cat===filter)&&(!q||norm(p.name+" "+p.code+" "+p.keys.join(" ")).includes(q)));
+    const hadSearch=$("search");
+    if(!hadSearch){
+      $("side").innerHTML=`<input class="search" id="search" placeholder="🔍 Tìm: lốp, kính, nỉ, keo…"><div class="filters" id="filters"></div><div class="grid" id="grid"></div>`;
+      $("search").oninput=renderSide;
+    }
+    $("filters").innerHTML=["Tất cả","Nội thất","Ngoại thất","Kính"].map(c=>`<button class="chip ${c===filter?"on":""}" data-c="${c}">${c}</button>`).join("");
+    $("filters").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{filter=b.dataset.c;renderSide();});
+    $("grid").innerHTML=items.map(p=>`<button class="pcard ${p===cur?"on":""}" data-id="${p.id}">
+      <div class="art" style="background:${p.tint}"><span class="tag">${p.cat}</span>${bottle(p,64)}</div>
+      <div class="nm">${p.short}</div><div class="pr">${vnd(p.price)}</div></button>`).join("") || `<div class="hint" style="padding:8px">Không tìm thấy sản phẩm.</div>`;
+    $("grid").querySelectorAll(".pcard").forEach(b=>b.onclick=()=>{cur=byId(+b.dataset.id); render(true); scrollMain();});
+  } else if(mode==="combo"){
+    $("side").innerHTML=COMBOS.map((c,i)=>{const t=c.ids.reduce((s,id)=>s+byId(id).price,0);
+      return `<button class="combo ${i===combo?"on":""}" data-i="${i}"><div class="ic">${c.ids.map(id=>{const p=byId(id);return `<span style="background:${p.tint}">${bottle(p,20)}</span>`}).join("")}</div>
+      <div><b>${c.name}</b><small>${c.ids.length} sản phẩm</small></div><span class="tot">${vnd(t)}</span></button>`}).join("");
+    $("side").querySelectorAll(".combo").forEach(b=>b.onclick=()=>{combo=+b.dataset.i; render(true); scrollMain();});
+  } else {
+    $("side").innerHTML=SIT.map(g=>`<div class="sec" style="color:${g.color}">${g.group}</div><div class="sitg">${g.items.map(i=>
+      `<button class="sit ${i.id===sit.id?"on":""}" data-s="${i.id}"><span class="em" style="background:${g.bg}">${i.em}</span><span><b>${i.t}</b><small>${esc(i.d)}</small></span></button>`).join("")}</div>`).join("");
+    $("side").querySelectorAll(".sit").forEach(b=>b.onclick=()=>{sit=SITS.find(s=>s.id===b.dataset.s); render(true); scrollMain();});
+  }
+}
+function prodSelect(){
+  return `<div class="ctx">Đang nói về sản phẩm: <select id="ctxSel">${P.map(p=>`<option value="${p.id}" ${p===cur?"selected":""}>${p.short} – ${vnd(p.price)}</option>`).join("")}</select></div>`;
+}
+function renderHead(){
+  if(mode==="sp"){
+    const p=cur, L={uses:["✨ Công dụng",p.uses,"ul"],steps:["🧴 Cách dùng",p.steps,"ol"],notes:["⚠️ Lưu ý",p.notes,"ul"]}, [ttl,arr,tag]=L[tab];
+    $("phead").innerHTML=`<div class="big" style="background:${p.tint}">${bottle(p,82)}</div><div class="tx">
+      <h2>${p.name}</h2><div class="sub"><span class="price">${vnd(p.price)}</span><span class="pill">${p.vol}</span>${p.code?`<span class="pill">Mã ${p.code}</span>`:""}<span class="pill">${p.cat}</span></div>
+      <div class="tabs">${Object.entries(L).map(([k,v])=>`<button class="tab t-${k} ${k===tab?"on":""}" data-t="${k}">${v[0]}</button>`).join("")}</div>
+      <div class="info t-${tab}"><button class="cp" id="cpInfo">⧉ Copy</button><${tag}>${arr.map(x=>`<li>${x}</li>`).join("")}</${tag}></div></div>`;
+    $("phead").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{tab=b.dataset.t;renderHead();});
+    $("cpInfo").onclick=e=>copy(ttl.replace(/^\S+\s/,"")+" – "+p.name+":\n"+arr.map((x,i)=>(tag==="ol"?(i+1)+". ":"• ")+x).join("\n"), e.currentTarget);
+  } else if(mode==="combo"){
+    const c=COMBOS[combo], t=c.ids.reduce((s,id)=>s+byId(id).price,0);
+    $("phead").innerHTML=`<div class="big" style="background:linear-gradient(135deg,#fff3ef,#ffe1dc)"><div style="display:flex">${c.ids.slice(0,3).map(id=>bottle(byId(id),58)).join("")}</div></div>
+      <div class="tx"><h2>🎁 ${c.name}</h2><div class="sub"><span class="price">${vnd(t)}</span><span class="pill">${c.ids.length} sản phẩm · tổng giá lẻ</span></div>
+      <div class="info t-uses"><ul>${c.ids.map(i=>{const p=byId(i);return `<li>${p.name} – <b>${vnd(p.price)}</b></li>`}).join("")}</ul></div></div>`;
+  } else {
+    $("phead").innerHTML=`<div class="big" style="background:${sit.g.bg};font-size:44px">${sit.em}</div><div class="tx">
+      <h2>${sit.t}</h2><div class="sub"><span class="pill" style="background:${sit.g.bg};color:${sit.g.color};font-weight:700">${sit.g.group}</span><span>${esc(sit.d)}</span></div>
+      ${prodSelect()}</div>`;
+    $("ctxSel").onchange=e=>{cur=byId(+e.target.value); render(true);};
+  }
+}
+function renderQuick(){
+  let h="";
+  if(mode==="sp") h=QUICK.map(([k,l])=>`<button class="q ${k.startsWith("@")?"hot":""}" data-k="${k}">${l}</button>`).join("");
+  else if(mode==="combo") h=`<button class="q" data-k="combo">🎁 Giới thiệu combo</button><button class="q hot" data-k="@sdt">📞 Xin SĐT</button><button class="q hot" data-k="@zalo">💬 Xin Zalo</button><button class="q" data-k="corder">📦 Đặt combo</button>`;
+  else h=SIT.map(g=>g.items.filter(i=>i.id!==sit.id).slice(0,2).map(i=>`<button class="q" data-k="@${i.id}">${i.em} ${i.t}</button>`).join("")).join("");
+  $("quick").innerHTML=h+`<button class="clear" id="clr">Xoá hội thoại</button>`;
+  $("quick").querySelectorAll(".q").forEach(b=>b.onclick=()=>respond(b.dataset.k));
+  $("clr").onclick=()=>{$("thread").innerHTML="";};
+}
+function scrollMain(){ if(innerWidth<900) document.querySelector("main").scrollIntoView({behavior:"smooth"}); }
+
+/* ================= CHAT ================= */
+function addKh(text){
+  const d=document.createElement("div"); d.className="msg kh";
+  const sys=text.startsWith("(");
+  d.innerHTML=`<div class="av">KH</div><div class="col"><span class="who">Khách</span><div class="bub ${sys?"sys":""}"></div></div>`;
+  d.querySelector(".bub").textContent=sys?text.slice(1,-1):text;
+  $("thread").appendChild(d); $("thread").scrollTop=$("thread").scrollHeight;
+}
+async function addMe(text, label){
+  const ty=document.createElement("div"); ty.className="typing"; ty.innerHTML="<i></i><i></i><i></i>";
+  $("thread").appendChild(ty); $("thread").scrollTop=$("thread").scrollHeight;
+  await sleep(380); ty.remove();
+  const d=document.createElement("div"); d.className="msg me";
+  d.innerHTML=`<div class="av">${esc((shop()[0]||"S").toUpperCase())}</div><div class="col"><span class="who">${label?`<span class="lbl">${esc(label)}</span>`:""}Trả lời mẫu · ${esc(shop())}</span>
+    <div class="bub" contenteditable="true" spellcheck="false"></div><div class="row"><span class="hint">✎ Bấm vào để sửa</span><button class="cp">⧉ Copy</button></div></div>`;
+  const b=d.querySelector(".bub"); b.textContent=text;
+  b.innerHTML=b.innerHTML.replace(/\[([^\]]{1,20})\]/g,'<span class="ph">[$1]</span>');
+  d.querySelector(".cp").onclick=e=>copy(b.innerText.trim(), e.currentTarget);
+  $("thread").appendChild(d); $("thread").scrollTop=$("thread").scrollHeight;
+}
+function comboText(k){
+  const c=COMBOS[combo], t=c.ids.reduce((s,id)=>s+byId(id).price,0);
+  if(k==="combo") return `Dạ anh/chị tham khảo ${c.name.toLowerCase()} bên em nha 🎁\n`+c.ids.map(i=>{const p=byId(i);return `• ${p.name} (${p.vol}) – ${vnd(p.price)}`}).join("\n")+`\nTổng: ${vnd(t)}.\nBộ này ${c.why} ạ. Anh/chị lấy trọn bộ để em lên đơn luôn nha?`;
+  return `Dạ anh/chị gửi giúp em họ tên, số điện thoại, địa chỉ nhận hàng, em lên đơn ${c.name.toLowerCase()} (${vnd(t)}) và báo phí ship cho mình ngay ạ. Cần tư vấn thêm anh/chị gọi hoặc Zalo em: ${sdt()}.`;
+}
+function respond(k, raw){
+  busy = busy.then(async()=>{
+    if(k.startsWith("@")){
+      const s=SITS.find(x=>x.id===k.slice(1));
+      addKh(raw || s.kh);
+      let ctx=cur;
+      if(mode==="combo"){ const c=COMBOS[combo]; ctx={name:c.name.toLowerCase(), price:c.ids.reduce((x,id)=>x+byId(id).price,0), tip:byId(c.ids[0]).tip}; }
+      for(const [lbl,txt] of s.v) await addMe(fill(txt, ctx), lbl);
+      return;
+    }
+    if(mode==="combo"){ addKh(raw || (k==="combo"?"Có bộ nào đủ dùng không shop?":"Đặt combo sao shop?")); await addMe(comboText(k)); return; }
+    addKh(raw || QLABEL[k]); await addMe(A[k](cur));
+  });
+}
+function render(reset){
+  renderModes(); renderSide(); renderHead(); renderQuick();
+  if(reset){ $("thread").innerHTML="";
+    if(mode==="sp") respond("uses","(Khách hỏi về "+cur.short.toLowerCase()+")");
+    else if(mode==="combo") respond("combo");
+    else respond("@"+sit.id);
+  }
+}
+$("ask").onsubmit=e=>{
+  e.preventDefault(); const v=$("askIn").value.trim(); if(!v) return;
+  const p=detectProduct(v); let k=detect(v);
+  if(p && p!==cur){ cur=p; if(mode==="sp"){tab="uses";renderSide();renderHead();} else if(mode==="sit") renderHead(); }
+  if(mode==="combo" && !k.startsWith("@")){ mode="sp"; renderModes(); renderSide(); renderHead(); renderQuick(); }
+  respond(k, v); $("askIn").value="";
+};
+
+async function copy(text, btn){
+  let ok=false;
+  try{ await navigator.clipboard.writeText(text); ok=true; }catch(e){
+    try{ const t=document.createElement("textarea"); t.value=text; document.body.appendChild(t); t.select(); ok=document.execCommand("copy"); t.remove(); }catch(_){}
+  }
+  if(ok){ const o=btn.innerHTML; btn.innerHTML="✓ Đã copy"; btn.classList.add("done"); setTimeout(()=>{btn.innerHTML=o;btn.classList.remove("done")},1500);
+    $("toast").classList.add("show"); setTimeout(()=>$("toast").classList.remove("show"),1500); }
+  else btn.textContent="Bôi đen & copy tay";
+}
+render(true);
+</script>
+</body>
+</html>
